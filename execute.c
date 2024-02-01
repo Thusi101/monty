@@ -1,5 +1,5 @@
-#include "monty.h"
 #include <stdio.h>
+#include "monty.h"
 
 /**
  * free_stack - frees the stack after runtime
@@ -24,6 +24,8 @@ void free_stack(stack_t *stack)
  * or bottom (if in QUEUE mode) of stack
  *
  * @stack: the program stack
+ * @add_node_at_top: adds node at top of execution
+ * @add_node_at_bottom: adds node at bottom of exec
  * @line_nb: the line number
  * @a_value: value to add to stack
  */
@@ -33,7 +35,7 @@ void _push(stack_t **stack, unsigned int line_nb, char *a_value)
 
     while (a_value && a_value[i])
     {
-        if (!isdigit(a_value[i]) || (a_value[i] == '-' && i != 0)) // Improved condition
+        if (!isdigit(a_value[i]) || (a_value[i] == '-' && i != 0))
         {
             fprintf(stderr, "L%d: usage: push integer\n", line_nb);
             META.error = 1;
@@ -42,7 +44,7 @@ void _push(stack_t **stack, unsigned int line_nb, char *a_value)
         i++;
     }
 
-    if (!a_value || *a_value == '\0' || i != strlen(a_value)) // Fixed comparison
+    if (!a_value || *a_value == '\0' || i != strlen(a_value))
     {
         fprintf(stderr, "L%d: usage: push integer\n", line_nb);
         META.error = 1;
@@ -112,6 +114,7 @@ int monty_dispatch(char **args, stack_t **stack, unsigned int line_nb)
  * monty_run - main interpreter loop
  *
  * @fp: file pointer to monty bytecode file
+ * @getline: read lines from file pointer
  *
  * Return: EXIT_SUCCESS if success, EXIT_FAILURE if failure
 */
@@ -124,7 +127,7 @@ int monty_run(FILE *fp)
 	unsigned int line_nb = 1;
 
 	stack_t *stack = NULL;
-
+	
 	while (getline(&line, &len, fp) != -1)
 	{
 		args = handle_line(line);

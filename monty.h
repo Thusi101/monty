@@ -67,6 +67,8 @@ void _pint(stack_t **stack, unsigned int line_nb);
 void _pop(stack_t **stack, unsigned int line_nb);
 void _swap(stack_t **stack, unsigned int line_nb);
 void _add(stack_t **stack, unsigned int line_nb);
+void add_node_at_top(stack_t **stack, int value);
+void add_node_at_bottom(stack_t **stack, int value);
 void _nop(stack_t **stack, unsigned int line_nb);
 void _sub(stack_t **stack, unsigned int line_nb);
 void _div(stack_t **stack, unsigned int line_nb);
