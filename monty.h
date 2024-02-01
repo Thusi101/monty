@@ -12,77 +12,81 @@
 #define QUEUE 1
 
 /**
- * struct dblink_s - doubly linked list representation of a stack (or queue)
- * @i: integer
- * @bak: points to the previous element of the stack (or queue)
- * @fwd: points to the next element of the stack (or queue)
- * 
- */
-
-typedef struct dblink_s
-{
-		int i;
-		struct dblink_s *bak;
-		struct dblink_s *fwd;
-} dblink_t;
-
-/**
- * struct form_s - structure containing the error status and state of the stack
+ * struct meta_s - structure containing the error status and state of the stack
  * @error: the error value (0 if no, 1 if yes)
- * @type: QUEUE or STACK
+ * @state: QUEUE or STACK
  */
 
-typedef struct form_s
+typedef struct meta_s
 {
-        int error;
-        int type;
-} form_t;
+	int error;
+	int state;
+} meta_t;
 
 /**
- * struct opcf_s - opcode and its function
- * @opcode: the opcode
- * @func: function to handle the opcode
+ * struct stack_s - doubly linked list representation of a stack (or queue)
+ * @n: integer
+ * @prev: points to the previous element of the stack (or queue)
+ * @next: points to the next element of the stack (or queue)
  *
+ * Description: doubly linked list node structure
+ * for stack, queues, LIFO, FIFO Holberton project
  */
 
-typedef struct opcf_s
+typedef struct stack_s
+{
+		int n;
+		struct stack_s *prev;
+		struct stack_s *next;
+} stack_t;
+
+/**
+ * struct instruction_s - opcode and its function
+ * @opcode: the opcode
+ * @f: function to handle the opcode
+ *
+ * Description: opcode and its function
+ * for stack, queues, LIFO, FIFO Holberton project
+ */
+
+typedef struct instruction_s
 {
 		char *opcode;
-		void (*func)(dblink_t **dblink, unsigned int line_num);
-} opcf_t;
+		void (*f)(stack_t **stack, unsigned int line_number);
+} instruction_t;
 
-form_t FORM;
+meta_t META;
 
 /* EXEC */
 int monty_run(FILE *fp);
 
 /* OPCODES */
-void _push(dblink_t **dblink, unsigned int line_num, char *a_value);
-void _pall(dblink_t **dblink, unsigned int line_num);
-void _pint(dblink_t **dblink, unsigned int line_num);
-void _pop(dblink_t **dblink, unsigned int line_num);
-void _swap(dblink_t **dblink, unsigned int line_num);
-void _add(dblink_t **dblink, unsigned int line_num);
-void _nop(dblink_t **dblink, unsigned int line_num);
-void _sub(dblink_t **dblink, unsigned int line_num);
-void _div(dblink_t **dblink, unsigned int line_num);
-void _mul(dblink_t **dblink, unsigned int line_num);
-void _mod(dblink_t **dblink, unsigned int line_num);
-void _pchar(dblink_t **dblink, unsigned int line_num);
-void _pstr(dblink_t **dblink, unsigned int line_num);
-void _rotl(dblink_t **dblink, unsigned int line_num);
-void _rotr(dblink_t **dblink, unsigned int line_num);
+void _push(stack_t **stack, unsigned int line_nb, char *a_value);
+void _pall(stack_t **stack, unsigned int line_nb);
+void _pint(stack_t **stack, unsigned int line_nb);
+void _pop(stack_t **stack, unsigned int line_nb);
+void _swap(stack_t **stack, unsigned int line_nb);
+void _add(stack_t **stack, unsigned int line_nb);
+void _nop(stack_t **stack, unsigned int line_nb);
+void _sub(stack_t **stack, unsigned int line_nb);
+void _div(stack_t **stack, unsigned int line_nb);
+void _mul(stack_t **stack, unsigned int line_nb);
+void _mod(stack_t **stack, unsigned int line_nb);
+void _pchar(stack_t **stack, unsigned int line_nb);
+void _pstr(stack_t **stack, unsigned int line_nb);
+void _rotl(stack_t **stack, unsigned int line_nb);
+void _rotr(stack_t **stack, unsigned int line_nb);
 
 /* OP_PUSH */
-dblink_t *add_dnodeint(dblink_t **head, const int i);
-dblink_t *add_dnodeint_end(dblink_t **head, const int i);
+stack_t *add_dnodeint(stack_t **head, const int n);
+stack_t *add_dnodeint_end(stack_t **head, const int n);
 
 /* UTILS */
 int handle_input(int argc, char **argv, FILE **fd);
 char **handle_line(char *line);
-void _math(dblink_t **dblink, char op);
+void _math(stack_t **stack, char op);
 
 /* DEBUG */
-void debug(char **args, int line_num);
+void debug(char **args, int line_nb);
 
 #endif /* MONTY_H */
