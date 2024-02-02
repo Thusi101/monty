@@ -20,44 +20,6 @@ void free_stack(stack_t *stack)
 }
 
 /**
- * _push - adds a value at top (if in STACK mode)
- * or bottom (if in QUEUE mode) of stack
- *
- * @stack: the program stack
- * @add_node_at_top: adds node at top of execution
- * @add_node_at_bottom: adds node at bottom of exec
- * @line_nb: the line number
- * @a_value: value to add to stack
- */
-void _push(stack_t **stack, unsigned int line_nb, char *a_value)
-{
-    size_t i = 0;
-
-    while (a_value && a_value[i])
-    {
-        if (!isdigit(a_value[i]) || (a_value[i] == '-' && i != 0))
-        {
-            fprintf(stderr, "L%d: usage: push integer\n", line_nb);
-            META.error = 1;
-            return;
-        }
-        i++;
-    }
-
-    if (!a_value || *a_value == '\0' || i != strlen(a_value))
-    {
-        fprintf(stderr, "L%d: usage: push integer\n", line_nb);
-        META.error = 1;
-        return;
-    }
-
-    if (META.state == STACK)
-        add_node_at_top(stack, atoi(a_value));
-    else
-        add_node_at_bottom(stack, atoi(a_value));
-}
-
-/**
  * monty_dispatch - selects the correct function to call
  *
  * @args: the array of args
