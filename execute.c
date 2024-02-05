@@ -60,7 +60,7 @@ int execute_instruction(char **args, stacknode **stack, unsigned int line_number
 
 	if (strcmp(args[0], "queue") == 0)
 	{
-		META.state = QUEUE;
+		error_state.state = QUEUE;
 		return (error_state.error);
 	}
 
@@ -100,7 +100,7 @@ int execute_monty(FILE *file_ptr)
 		char **args = handle_line(line);
 		if (args  == NULL)
 		{
-			fprint(stderr, "Error: failed to parse line %d\n", line_number);
+			fprintf(stderr, "Error: failed to parse line %d\n", line_number);
 			free(line);
 			free_stack(stack);
 			return (EXIT_FAILURE);
