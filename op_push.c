@@ -10,11 +10,11 @@
  * Return: the new pointer
  */
 
-stack_t *add_dnodeint(stack_t **head, const int n)
+stacknode *add_dnodeint(stacknode **head, const int n)
 {
-	stack_t *new = NULL;
+	stacknode *new = NULL;
 
-	new = malloc(sizeof(stack_t));
+	new = malloc(sizeof(stacknode));
 	if (new)
 	{
 		new->n = n;
@@ -42,12 +42,12 @@ stack_t *add_dnodeint(stack_t **head, const int n)
  * Return: the new pointer
  */
 
-stack_t *add_dnodeint_end(stack_t **head, const int n)
+stacknode *add_dnodeint_end(stacknode **head, const int n)
 {
-	stack_t *new = NULL;
-	stack_t *cur = *head;
+	stacknode *new = NULL;
+	stacknode *cur = *head;
 
-	new = malloc(sizeof(stack_t));
+	new = malloc(sizeof(stacknode));
 	if (new)
 	{
 		new->n = n;
@@ -74,15 +74,15 @@ stack_t *add_dnodeint_end(stack_t **head, const int n)
 }
 
 /**
- * _push - adds a value at top (if in STACK mode)
+ * _pushop - adds a value at top (if in STACK mode)
  * or bottom (if in QUEUE mode) of stack
  *
  * @stack: the program stack
- * @line_nb: the line number
+ * @line_number: the line number
  * @a_value: value to add to stack
  */
 
-void _push(stack_t **stack, unsigned int line_nb, char *a_value)
+void _pushop(stacknode **stack, unsigned int line_number, char *a_value)
 {
 	size_t i = 0;
 

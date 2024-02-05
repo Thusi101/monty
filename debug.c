@@ -6,11 +6,11 @@
  * @line_nb: line number
  */
 
-void debug(char **args, int line_nb)
+void debug(char **args, int line_number)
 {
 	int i = 0;
 
-	printf("line[%d] = ", line_nb + 1);
+	printf("line[%d] = ", line_number + 1);
 	while (args && args[i])
 	{
 		printf("[%s] ", args[i]);

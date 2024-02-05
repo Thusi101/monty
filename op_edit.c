@@ -4,16 +4,16 @@
  * _pop - deletes the node at the top of the stack
  *
  * @stack: the program stack
- * @line_nb: the line number
+ * @line_number: the line number
  */
 
-void _pop(stack_t **stack, unsigned int line_nb)
+void _popop(stacknode **stack, unsigned int line_number)
 {
-	stack_t *tmp;
+	stacknode *tmp;
 
 	if (!*stack || !stack)
 	{
-		fprintf(stderr, "L%d: can't pop an empty stack\n", line_nb);
+		fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
 		META.error = 1;
 	}
 	else if ((*stack)->next)
@@ -34,16 +34,16 @@ void _pop(stack_t **stack, unsigned int line_nb)
  * _swap - swaps the first two at the top of the stack
  *
  * @stack: the program stack
- * @line_nb: the line number
+ * @line_number: the line number
  */
 
-void _swap(stack_t **stack, unsigned int line_nb)
+void _swapop(stacknode **stack, unsigned int line_number)
 {
 	int tmp = 0;
 
 	if (!*stack || !stack || !(*stack)->next)
 	{
-		fprintf(stderr, "L%d: can't swap, stack too short\n", line_nb);
+		fprintf(stderr, "L%d: can't swap, stack too short\n", line_number);
 		META.error = 1;
 	}
 	else

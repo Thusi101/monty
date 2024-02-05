@@ -10,18 +10,18 @@
 
 int main(int argc, char **argv)
 {
-	FILE *fp;
+	FILE *file_ptr;
 
 	META.error = 0;
 	META.state = STACK;
 
-	if (handle_input(argc, argv, &fp) == 1 || monty_run(fp) == 1)
+	if (handle_input(argc, argv, &file_ptr) == 1 || monty_run(file_ptr) == 1)
 	{
-		if (fp)
-			fclose(fp);
+		if (fle_ptr)
+			fclose(file_ptr);
 		exit(EXIT_FAILURE);
 	}
 
-	fclose(fp);
+	fclose(file_ptr);
 	return (EXIT_SUCCESS);
 }

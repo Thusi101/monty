@@ -1,16 +1,16 @@
 #include "monty.h"
 
 /**
- * _rotl - rotates the top of stack (top of stack becomes bottom)
+ * _rotlop - rotates the top of stack (top of stack becomes bottom)
  *
  * @stack: the program stack
- * @line_nb: the line number
+ * @line_number: the line number
  */
 
-void _rotl(stack_t **stack, unsigned int line_nb)
+void _rotlop(stacknode **stack, unsigned int line_number)
 {
-	stack_t *tmp;
-	(void)line_nb;
+	stacknode *tmp;
+	(void)line_number;
 
 	if (*stack && (*stack)->next)
 	{
@@ -23,16 +23,16 @@ void _rotl(stack_t **stack, unsigned int line_nb)
 }
 
 /**
- * _rotr - rotates the bottom of stack (bottom of stack becomes top)
+ * _rotrop - rotates the bottom of stack (bottom of stack becomes top)
  *
  * @stack: the program stack
- * @line_nb: the line number
+ * @line_number: the line number
  */
 
-void _rotr(stack_t **stack, unsigned int line_nb)
+void _rotrop(stacknode **stack, unsigned int line_number)
 {
 	stack_t *tmp;
-	(void)line_nb;
+	(void)line_number;
 
 	if (*stack && (*stack)->next)
 	{

@@ -4,12 +4,12 @@
  * handle_input - handles the file given as path, and sets fd
  * @argc: the amount of arguments given to the program
  * @argv: the array of arguments given to the program
- * @fp: the file descriptor to set
+ * @file_ptr: the file descriptor to set
  *
  * Return: 0 on success, otherwise EXIT_FAILURE
  */
 
-int handle_input(int argc, char **argv, FILE **fp)
+int handle_input(int argc, char **argv, FILE **file_ptr)
 {
 	if (argc != 2)
 	{
@@ -17,8 +17,8 @@ int handle_input(int argc, char **argv, FILE **fp)
 		return (EXIT_FAILURE);
 	}
 
-	*fp = fopen(argv[1], "r");
-	if (*fp == NULL)
+	*file_ptr = fopen(argv[1], "r");
+	if (*file_ptr == NULL)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		return (EXIT_FAILURE);
@@ -89,10 +89,10 @@ void free_args(char **args)
  */
 
 
-void _math(stack_t **stack, char op)
+void _math(stacknode **stack, char op)
 {
 	int res = 0;
-	stack_t *tmp;
+	stacknode *tmp;
 
 	if (op == '+')
 		res = (*stack)->n + (*stack)->next->n;
