@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include "monty.h"
 
+extern errorstate error_state;
+
 /**
  * add_dnodeint - adds a new node at the beginning of a dlistint_t list
  *
@@ -17,7 +19,7 @@ stacknode *add_dnodeint(stacknode **head, const int n)
 	new = malloc(sizeof(stacknode));
 	if (new)
 	{
-		new->n = n;
+		new->data = n;
 		new->prev = NULL;
 		if (*head)
 			(*head)->prev = new;
@@ -27,7 +29,7 @@ stacknode *add_dnodeint(stacknode **head, const int n)
 	else
 	{
 		fprintf(stderr, "Error: malloc failed\n");
-		META.error = 1;
+		error_state.error = 1;
 	}
 
 	return (new);
@@ -50,7 +52,7 @@ stacknode *add_dnodeint_end(stacknode **head, const int n)
 	new = malloc(sizeof(stacknode));
 	if (new)
 	{
-		new->n = n;
+		new->data = n;
 		new->next = NULL;
 		new->prev = NULL;
 
@@ -67,7 +69,7 @@ stacknode *add_dnodeint_end(stacknode **head, const int n)
 	else
 	{
 		fprintf(stderr, "Error: malloc failed\n");
-		META.error = 1;
+		error_state.error = 1;
 	}
 
 	return (new);
@@ -96,12 +98,12 @@ void _pushop(stacknode **stack, unsigned int line_number, char *a_value)
 
 	if (!a_value || *a_value == '\0' || i != strlen(a_value))
 	{
-		fprintf(stderr, "L%d: usage: push integer\n", line_nb);
-		META.error = 1;
+		fprintf(stderr, "L%d: usage: push integer\n", line_number);
+		error_state.error = 1;
 		return;
 	}
 
-	if (META.state == STACK)
+	if (error_state.state == STACK)
 		add_dnodeint(stack, atoi(a_value));
 	else
 		add_dnodeint_end(stack, atoi(a_value));

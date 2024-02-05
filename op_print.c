@@ -12,11 +12,11 @@ void _pintop(stacknode **stack, unsigned int line_number)
 	if (!*stack || !stack)
 	{
 		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
-		META.error = 1;
+		error_state.error = 1;
 	}
 	else
 	{
-		printf("%d\n", (*stack)->n);
+		printf("%d\n", (*stack)->data);
 	}
 }
 
@@ -34,7 +34,7 @@ void _pallop(stacknode **stack, unsigned int line_number)
 
 	while (cur)
 	{
-		printf("%d\n", cur->n);
+		printf("%d\n", cur->data);
 		cur = cur->next;
 	}
 }
@@ -64,16 +64,16 @@ void _pcharop(stacknode **stack, unsigned int line_number)
 	if (!*stack || !stack)
 	{
 		fprintf(stderr, "L%d: can't pchar, stack empty\n", line_number);
-		META.error = 1;
+		error_state.error = 1;
 	}
-	else if ((*stack)->n < 0 || (*stack)->n > 127)
+	else if ((*stack)->data < 0 || (*stack)->data > 127)
 	{
 		fprintf(stderr, "L%d: can't pchar, value out of range\n", line_number);
-		META.error = 1;
+		error_state.error = 1;
 	}
 	else
 	{
-		printf("%c\n", (*stack)->n);
+		printf("%c\n", (*stack)->data);
 	}
 }
 
@@ -89,9 +89,9 @@ void _pstrop(stacknode **stack, unsigned int line_number)
 	stacknode *cur = *stack;
 	(void)line_number;
 
-	while (cur && (cur->n > 0 && cur->n <= 127))
+	while (cur && (cur->data > 0 && cur->data <= 127))
 	{
-		printf("%c", cur->n);
+		printf("%c", cur->data);
 		cur = cur->next;
 	}
 	printf("\n");

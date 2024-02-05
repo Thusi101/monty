@@ -12,12 +12,12 @@ int main(int argc, char **argv)
 {
 	FILE *file_ptr;
 
-	META.error = 0;
-	META.state = STACK;
+	error_state.error = 0;
+	error_state.state = STACK;
 
-	if (handle_input(argc, argv, &file_ptr) == 1 || monty_run(file_ptr) == 1)
+	if (handle_input(argc, argv, &file_ptr) == 1 || execute_monty(file_ptr) == 1)
 	{
-		if (fle_ptr)
+		if (file_ptr)
 			fclose(file_ptr);
 		exit(EXIT_FAILURE);
 	}

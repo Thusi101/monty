@@ -48,20 +48,20 @@ int execute_instruction(char **args, stacknode **stack, unsigned int line_number
 		if (args[1], == NULL)
 		{
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);	
-		META.error = 1;:
+		error_state.error = 1;:
 		return (EXIT_FAILURE);
 	}
 
 	if (strcmp(args[0], "stack") == 0)
 	{
-		META.state = STACK;
-		return (META.error);
+		error_state.state = STACK;
+		return (error_state.error);
 	}
 
 	if (strcmp(args[0], "queue") == 0)
 	{
 		META.state = QUEUE;
-		return (META.error);
+		return (error_state.error);
 	}
 
 	while (instructions[i].opcode)
@@ -69,12 +69,12 @@ int execute_instruction(char **args, stacknode **stack, unsigned int line_number
 		if (strcmp(args[0], instructions[i].opcode) == 0)
 		{
 			instructions[i].f(stack, line_number);
-			return (META.error);
+			return (error_state.error);
 		}
 		i++;
 	}
 	fprintf(stderr, "L%d: unknown instruction %s\n", line_number, args[0]);
-	META.error = 1;
+	error_state.error = 1;
 	return (EXIT_FAILURE);
 }
 
@@ -87,7 +87,7 @@ int execute_instruction(char **args, stacknode **stack, unsigned int line_number
  * Return: EXIT_SUCCESS if success, EXIT_FAILURE if failure
 */
 
-int monty_run(FILE *file_ptr)
+int execute_monty(FILE *file_ptr)
 {
 	char *line = NULL;
 	char **args = NULL;

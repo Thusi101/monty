@@ -3,7 +3,7 @@
  * debug - debug function
  *
  * @args: array of arguments
- * @line_nb: line number
+ * @line_number: line number
  */
 
 void debug(char **args, int line_number)

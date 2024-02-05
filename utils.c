@@ -95,30 +95,30 @@ void _math(stacknode **stack, char op)
 	stacknode *tmp;
 
 	if (op == '+')
-		res = (*stack)->n + (*stack)->next->n;
+		res = (*stack)->data + (*stack)->next->data;
 	else if (op == '-')
-		res = (*stack)->next->n - (*stack)->n;
+		res = (*stack)->next->data - (*stack)->data;
 	else if (op == '/')
 	{
-		if ((*stack)->n == 0)
-			META.error = 1;
+		if ((*stack)->data == 0)
+			error_state.error = 1;
 		else
-			res = (*stack)->next->n / (*stack)->n;
+			res = (*stack)->next->data / (*stack)->data;
 	}
 	else if (op == '*')
-		res = (*stack)->n * (*stack)->next->n;
+		res = (*stack)->data * (*stack)->next->data;
 	else if (op == '%')
 	{
-		if ((*stack)->n == 0)
-			META.error = 1;
+		if ((*stack)->data == 0)
+			error_state.error = 1;
 		else
-			res = (*stack)->next->n % (*stack)->n;
+			res = (*stack)->next->data % (*stack)->data;
 	}
 
-	if (META.error == 1)
+	if (error_state.error == 1)
 		return;
 
-	(*stack)->next->n = res;
+	(*stack)->next->data = res;
 	tmp = (*stack)->next;
 	tmp->prev = NULL;
 	free(*stack);

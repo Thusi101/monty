@@ -11,10 +11,10 @@
 #define STACK 0
 #define QUEUE 1
 
-typedef struct ErrorState{
-	int haserror;
-	int stackstate;
-} ErrorState;
+typedef struct errorstate{
+	int error;
+	int state;
+} errorstate;
 
 typedef struct stacknode{
 		int data;
@@ -25,9 +25,9 @@ typedef struct stacknode{
 typedef struct instruction{
 		char *opcode;
 		void (*handler)(stacknode **stack, unsigned int line_number);
-} instruction;
+} instruction_t;
 
-extern ErrorState error_state;
+extern errorstate error_state;
 
 /* EXEC */
 int execute_monty(FILE *file_ptr);

@@ -14,7 +14,7 @@ void _rotlop(stacknode **stack, unsigned int line_number)
 
 	if (*stack && (*stack)->next)
 	{
-		add_dnodeint_end(stack, (*stack)->n);
+		add_dnodeint_end(stack, (*stack)->data);
 		tmp = (*stack)->next;
 		tmp->prev = NULL;
 		free(*stack);
@@ -31,7 +31,7 @@ void _rotlop(stacknode **stack, unsigned int line_number)
 
 void _rotrop(stacknode **stack, unsigned int line_number)
 {
-	stack_t *tmp;
+	stacknode *tmp;
 	(void)line_number;
 
 	if (*stack && (*stack)->next)
@@ -40,7 +40,7 @@ void _rotrop(stacknode **stack, unsigned int line_number)
 		while (tmp->next)
 			tmp = tmp->next;
 
-		add_dnodeint(stack, tmp->n);
+		add_dnodeint(stack, tmp->data);
 		tmp = tmp->prev;
 		free(tmp->next);
 		tmp->next = NULL;

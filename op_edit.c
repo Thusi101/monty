@@ -1,7 +1,7 @@
 #include "monty.h"
 
 /**
- * _pop - deletes the node at the top of the stack
+ * _popop - deletes the node at the top of the stack
  *
  * @stack: the program stack
  * @line_number: the line number
@@ -14,7 +14,7 @@ void _popop(stacknode **stack, unsigned int line_number)
 	if (!*stack || !stack)
 	{
 		fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
-		META.error = 1;
+		error_state.error = 1;
 	}
 	else if ((*stack)->next)
 	{
@@ -31,7 +31,7 @@ void _popop(stacknode **stack, unsigned int line_number)
 }
 
 /**
- * _swap - swaps the first two at the top of the stack
+ * _swapop - swaps the first two at the top of the stack
  *
  * @stack: the program stack
  * @line_number: the line number
@@ -44,12 +44,12 @@ void _swapop(stacknode **stack, unsigned int line_number)
 	if (!*stack || !stack || !(*stack)->next)
 	{
 		fprintf(stderr, "L%d: can't swap, stack too short\n", line_number);
-		META.error = 1;
+		error_state.error = 1;
 	}
 	else
 	{
-		tmp = (*stack)->n;
-		(*stack)->n = (*stack)->next->n;
-		(*stack)->next->n = tmp;
+		tmp = (*stack)->data;
+		(*stack)->data = (*stack)->next->data;
+		(*stack)->next->data = tmp;
 	}
 }
