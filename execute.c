@@ -45,7 +45,7 @@ int execute_instruction(char **args, stacknode **stack, unsigned int line_number
 
 	if (strcmp(args[0], "push") == 0)
 	{
-		if (args[1], == NULL)
+		if (args[1] == NULL)
 		{
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);	
 		error_state.error = 1;:
@@ -79,7 +79,7 @@ int execute_instruction(char **args, stacknode **stack, unsigned int line_number
 }
 
 /**
- * monty_run - main interpreter loop
+ * execute_monty - main interpreter loop
  *
  * @file_ptr: file pointer to monty bytecode file
  * @getline: read lines from file pointer
