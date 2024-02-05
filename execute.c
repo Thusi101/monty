@@ -33,13 +33,13 @@ int execute_instruction(char **args, stacknode **stack, unsigned int line_number
 {
 	int i = 0;
 	instruction_t instructions[] = {
-		{"pall", _pallop}, {"pint", _pintop},
-		{"pop", _popop}, {"swap", _swapop},
-		{"add", _addop}, {"nop", _nopop},
-		{"sub", _subop}, {"div", _divop},
-		{"mul", _mulop}, {"mod", _modop},
-		{"pchar", _pcharop}, {"pstr", _pstrop},
-		{"rotl", _rotlop}, {"rotr", _rotrop},
+		{ "pall", _pallop }, { "pint", _pintop },
+		{ "pop", _popop }, { "swap", _swapop },
+		{ "add", _addop }, { "nop", _nopop },
+		{ "sub", _subop }, { "div", _divop },
+		{ "mul", _mulop }, { "mod", _modop },
+		{ "pchar", _pcharop }, { "pstr", _pstrop },
+		{ "rotl", _rotlop }, { "rotr", _rotrop },
 		{NULL, NULL}
 	};
 
